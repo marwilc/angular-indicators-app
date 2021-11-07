@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ChartsModule } from 'ng2-charts';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { Json2ArrayPipe } from './pipes/json2-array.pipe';
+import { SymbolPipe } from './pipes/symbol.pipe';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { Json2ArrayPipe } from './pipes/json2-array.pipe';
     ReactiveFormsModule,
     ChartsModule,
   ],
-  declarations: [NavBarComponent, Json2ArrayPipe],
+  declarations: [NavBarComponent, Json2ArrayPipe, SymbolPipe],
   exports: [
     NavBarComponent,
     FontAwesomeModule,
@@ -25,7 +26,8 @@ import { Json2ArrayPipe } from './pipes/json2-array.pipe';
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    SymbolPipe,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, CurrencyPipe, DecimalPipe],
 })
 export class SharedModule {}

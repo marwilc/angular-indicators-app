@@ -67,7 +67,11 @@ export class DetailIndicatorsComponent implements OnInit, OnDestroy {
   patchValueIndicator() {
     const { unidad_medida, serie, nombre } = this.indicator;
 
-    this.indicatorForm.patchValue({ unit: unidad_medida, name: nombre, date: serie[0].fecha });
+    this.indicatorForm.patchValue({
+      unit: unidad_medida,
+      name: nombre,
+      date: this.datePipe.transform(serie[0].fecha, 'dd/MM/YYYY'),
+    });
 
     this.lineChartData = [
       {
@@ -76,7 +80,7 @@ export class DetailIndicatorsComponent implements OnInit, OnDestroy {
       },
     ];
     this.lineChartLabels = this.indicator.serie.map((v) =>
-      this.datePipe.transform(v.fecha, 'dd/MM/YY'),
+      this.datePipe.transform(v.fecha, 'dd/MM/YYYY'),
     );
   }
 
