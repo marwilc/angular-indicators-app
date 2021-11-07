@@ -1,6 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 import { PricesIndicator } from 'src/app/core/interfaces/indicators';
 
 @Component({
@@ -54,7 +57,26 @@ export class DetailIndicatorsComponent implements OnInit {
 
   indicatorForm: FormGroup = this._createForm();
 
-  constructor(private _activateRoute: ActivatedRoute, private _fb: FormBuilder) {}
+  lineChartData: ChartDataSets[] = [];
+  lineChartLabels: Label[] = [];
+  lineChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  lineChartColors: Color[] = [
+    {
+      borderColor: 'black',
+      backgroundColor: '#03A9F4',
+    },
+  ];
+  lineChartLegend = true;
+  lineChartType = 'line';
+  lineChartPlugins = [];
+
+  constructor(
+    private _activateRoute: ActivatedRoute,
+    private _fb: FormBuilder,
+    private datePipe: DatePipe,
+  ) {}
 
   ngOnInit(): void {
     this.type = this._activateRoute.snapshot.paramMap.get('type');
@@ -62,6 +84,16 @@ export class DetailIndicatorsComponent implements OnInit {
     const { unidad_medida, serie, nombre } = this.indicator;
 
     this.indicatorForm.patchValue({ unit: unidad_medida, name: nombre, date: serie[0].fecha });
+
+    this.lineChartData = [
+      {
+        data: this.indicator.serie.map((v) => v.valor),
+        label: `Precios del ${this.indicator.nombre}`,
+      },
+    ];
+    this.lineChartLabels = this.indicator.serie.map((v) =>
+      this.datePipe.transform(v.fecha, 'dd/MM/YY'),
+    );
   }
 
   private _createForm(): FormGroup {

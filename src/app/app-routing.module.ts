@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const MAIN = '/indicators';
+const MAIN = '/indicators/list';
 
 const routes: Routes = [
   { path: '', redirectTo: MAIN, pathMatch: 'full' },
