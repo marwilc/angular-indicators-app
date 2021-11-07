@@ -4,11 +4,13 @@
 
     <div class="card"
          style="width: 18rem;">
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush"
+            *ngIf="indicators">
             <li class="list-group-item"
                 *ngFor="let indicator of indicators | json2Array">
                 <div class="d-flex flex-row justify-content-between">
-                    <div (click)="goToPrices(indicator)">
+                    <div (click)="goToPrices(indicator)"
+                         class="w-100">
                         <span class="list-item__name">
                             {{indicator.nombre}}
                         </span>
@@ -24,6 +26,7 @@
                         </fa-icon>
 
                         <fa-icon [icon]="faChevronRight"
+                                 (click)="goToPrices(indicator)"
                                  class="text-muted align-self-center">
                         </fa-icon>
                     </div>
