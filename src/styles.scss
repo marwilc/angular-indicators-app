@@ -24,3 +24,13 @@ body {
 .list-item__name {
   font-family: 'Arial Regular', sans-serif;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.list-item__hover {
+  :hover {
+    background: #f5f5f5;
+  }
+}

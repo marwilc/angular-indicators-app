@@ -3,13 +3,16 @@
     <h1 class="mt-3">Indicadores Financieros</h1>
 
     <div class="card">
-        <ul class="list-group list-group-flush"
+        <ul class="list-group list-group-flush list-item__hover"
             *ngIf="indicators">
-            <li class="list-group-item"
+            <li class="list-group-item "
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Ir al listado de precios"
                 *ngFor="let indicator of indicators | json2Array">
-                <div class="d-flex flex-row justify-content-between">
+                <div class="d-flex flex-row justify-content-between ">
                     <div (click)="goToPrices(indicator)"
-                         class="w-100">
+                         class="w-100 pointer">
                         <span class="list-item__name">
                             {{indicator.nombre}}
                         </span>
@@ -21,12 +24,15 @@
                     <div class="d-flex flex-row">
                         <fa-icon [icon]="faInfoCircle"
                                  [routerLink]="['/','indicators', indicator.codigo, 'detail']"
-                                 class="mr-2 text-primary align-self-center">
+                                 data-toggle="tooltip"
+                                 data-placement="top"
+                                 title="Ir al detalle"
+                                 class="mr-2 text-primary align-self-center pointer">
                         </fa-icon>
 
                         <fa-icon [icon]="faChevronRight"
                                  (click)="goToPrices(indicator)"
-                                 class="text-muted align-self-center">
+                                 class="text-muted align-self-center pointer">
                         </fa-icon>
                     </div>
                 </div>
