@@ -1,0 +1,35 @@
+<div class="container">
+
+    <app-sub-header-indicators [indicator]="prices.nombre">
+
+    </app-sub-header-indicators>
+
+
+    <div class="card"
+         style="width: 18rem;">
+        <div class="card-header d-flex flex-row justify-content-between">
+            <span>
+                Fecha
+            </span>
+
+            <span>
+                Valor
+            </span>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"
+                *ngFor="let serie of prices.serie ">
+                <div class="d-flex flex-row justify-content-between">
+                    <span class="list-item__name">
+                        {{serie.fecha | date :'dd-MM-YY'}}
+                    </span>
+                    <a class="card-link list-item__name">
+                        {{serie.valor | currency}}
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
